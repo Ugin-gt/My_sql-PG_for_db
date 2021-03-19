@@ -1,4 +1,4 @@
-DROP TABLE "users";
+-- DROP TABLE "users";
 /*  */
 CREATE TABLE "users" (
   id serial PRIMARY KEY,
@@ -165,5 +165,27 @@ INSERT INTO "reactions"
 VALUES (1, 1, true),
   (2, 1, false),
   (3, 2, true);
-/*  */
 
+
+/* 1 & 2 */
+SELECT *
+FROM users
+WHERE "is_male" = false;
+WHERE "is_male" = true;
+
+/* 3 */
+SELECT *
+FROM users
+WHERE age("birthday") >= make_interval(18) ;
+/* 4 */
+SELECT *
+FROM users  
+WHERE age("birthday") >= make_interval(18) AND "is_male" = false;
+/* 5 */
+SELECT *
+FROM users
+WHERE age("birthday") BETWEEN  make_interval(18) AND make_interval(40);
+
+SELECT *
+FROM users
+WHERE age("birthday") ;
