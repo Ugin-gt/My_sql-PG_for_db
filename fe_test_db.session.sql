@@ -189,3 +189,8 @@ WHERE age("birthday") BETWEEN  make_interval(18) AND make_interval(40);
 SELECT *
 FROM users
 WHERE age("birthday") ;
+
+
+SELECT *
+FROM "users"
+WHERE char_length( concat ("first_name",' ',"last_name")) > 15;
