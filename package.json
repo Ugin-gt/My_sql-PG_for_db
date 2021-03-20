@@ -1,5 +1,5 @@
 {
-  "name": "fe_db",
+  "name": "fd_db",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fccourses/fe_db.git"
+    "url": "git+https://github.com/Ugin-gt/My_sql-PG_for_db.git"
   },
   "keywords": [],
   "author": "",

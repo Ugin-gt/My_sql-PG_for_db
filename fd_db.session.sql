@@ -1,4 +1,4 @@
--- DROP TABLE "users";
+DROP TABLE "users";
 /*  */
 CREATE TABLE "users" (
   id serial PRIMARY KEY,
@@ -166,7 +166,6 @@ VALUES (1, 1, true),
   (2, 1, false),
   (3, 2, true);
 
-
 /* 1 & 2 */
 SELECT *
 FROM users
@@ -176,21 +175,45 @@ WHERE "is_male" = true;
 /* 3 */
 SELECT *
 FROM users
-WHERE age("birthday") >= make_interval(18) ;
+WHERE age("birthday") >= make_interval(18);
+
 /* 4 */
 SELECT *
-FROM users  
-WHERE age("birthday") >= make_interval(18) AND "is_male" = false;
+FROM users
+WHERE age("birthday") >= make_interval(18)
+  AND "is_male" = false;
+
 /* 5 */
 SELECT *
 FROM users
-WHERE age("birthday") BETWEEN  make_interval(18) AND make_interval(40);
+WHERE age("birthday") BETWEEN make_interval(18) AND make_interval(40);
 
+/* 6 */
 SELECT *
 FROM users
-WHERE age("birthday") ;
+WHERE EXTRACT(MONTH FROM "birthday") = 9;
 
-
+/* 7 */
 SELECT *
+FROM users
+WHERE EXTRACT(MONTH FROM "birthday") = 11 AND EXTRACT(DAY FROM "birthday") = 1;
+
+/* Пагинация вывод запроса постранично с ограничением строк */
+SELECT *
+FROM users
+WHERE "is_male" = false
+  AND age("birthday") BETWEEN make_interval(18) AND make_interval(35)
+LIMIT 20 OFFSET 40;
+
+/* Вывод запроса с переименованием полей(или таблицы) и обращением к конкретному столбцу (.)*/
+SELECT "first_name" AS "Имя",
+  "last_name" AS "Фамилия",
+  "email" AS "Почта"
+FROM "users" AS "U"
+WHERE "U"."id" >= 400;
+
+/* Показать количество пользователей с заданной длиной полного имени*/
+SELECT *,
+  char_length(concat ("first_name", ' ', "last_name")) AS "Full_Name_length"
 FROM "users"
-WHERE char_length( concat ("first_name",' ',"last_name")) > 15;
+WHERE char_length(concat ("first_name", ' ', "last_name")) > 17;

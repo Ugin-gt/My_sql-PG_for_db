@@ -3,5 +3,5 @@
   "password": "postgres",
   "host": "localhost",
   "port": 5432,
-  "database": "fd_2020_2"
+  "database": "my_new_db"
 }
