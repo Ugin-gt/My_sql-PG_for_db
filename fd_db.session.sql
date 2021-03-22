@@ -11,8 +11,8 @@ CREATE TABLE "users" (
     AND birthday > '1900/1/1'
   ),
   height numeric(3, 2) NOT NULL CHECK (
-    height > 0.20
-    AND height < 2.5
+    height > 1.4
+    AND height < 2.3
   ),
   CONSTRAINT "CK_FULL_NAME" CHECK (
     first_name != ''
@@ -217,3 +217,4 @@ SELECT *,
   char_length(concat ("first_name", ' ', "last_name")) AS "Full_Name_length"
 FROM "users"
 WHERE char_length(concat ("first_name", ' ', "last_name")) > 17;
+
