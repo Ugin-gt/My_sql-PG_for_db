@@ -218,3 +218,34 @@ SELECT *,
 FROM "users"
 WHERE char_length(concat ("first_name", ' ', "last_name")) > 17;
 
+/*средний рост всех   */
+SELECT avg("height") as "Средний рост пользователей"
+FROM "users";
+/*средний рост мужчин и женщин  */
+SELECT avg("height") as "Средний рост мужчин и женщин", "is_male"
+FROM "users"
+GROUP BY "is_male";
+
+/*минимальный, максимальный и средний рост мужчин и женщин  */
+SELECT min("height") as "Минимальный рост мужчин и женщин",
+max("height") as "МАксимальный рост мужчин и женщин",
+avg("height") as "Средний рост мужчин и женщин", "is_male"
+FROM "users"
+GROUP BY "is_male";
+
+/*кол-во родившихся в диапазоне   */
+SELECT count("birthday") as "кол-во родившихся 1 января 1970 года "
+FROM "users"
+WHERE "birthday" BETWEEN '01/01/1967' AND '01/01/1983' ;
+
+/*кол-во пользователей с  в диапазоне   */
+SELECT count("first_name") as "Тезки", "first_name"
+FROM "users"
+WHERE "first_name" = 'Nick'
+GROUP BY "first_name"; 
+
+/*кол-во пользователей с  в диапазоне  20-30 лет */
+SELECT count(*) as "пользователи в диапазоне  20-30 лет"
+FROM "users"
+WHERE extract('year' from age("birthday")) BETWEEN 20 AND 30;  
+
